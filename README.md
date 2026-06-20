@@ -1,4 +1,4 @@
-# Integrative Project - UIDE 2026
+# Integrative Project 
 
 ## Description
 Build, Boot and Attack — a full Linux stack project covering custom distro, 64-bit kernel, and offensive security lab.
@@ -26,5 +26,5 @@ grub-mkrescue -o kernel.iso iso
 qemu-system-x86_64 -drive file=kernel.iso,media=cdrom -m 512M -no-reboot
 ```
 
-## Instructor
-Ing. Jonathan E. Tito O., MSc.
+## Professor
+Ing. Jonathan Tito 
