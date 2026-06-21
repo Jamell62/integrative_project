@@ -29,23 +29,14 @@ The lab's background containers were explicitly listed, verifying the presence o
 * **Command executed:** sudo docker ps --format "{{.Names}}"
 
 | Container Name | Network |
-
 | :--- | :--- |
-
 | p-web-02 | Public |
-
 | p-jumpbox-01 | Public (Jump Machine) |
-
 | p-web-01 | Public |
-
 | p-ftp-01 | Public |
-
 | c-backup-01 | Corporate |
-
 | c-redis-01 | Corporate |
-
 | c-db-01 | Corporate |
-
 | c-db-02 | Corporate |
 
 ![Evidence of Active Containers](./img/docker_ps.png)
@@ -78,25 +69,15 @@ An interactive infiltration of the vulnerable public web server was performed us
 ### 6. Lab Architecture Table
 
 | Container Name | Public IP | Corporate IP | Hostname FQDN |
-
 | :--- | :--- | :--- | :--- |
-
 **Ubuntu Host** | 172.16.10.1 | 10.1.0.1 | *Local Host* |
-
 | p-web-01 | 172.16.10.10 | *Unassigned* | p-web-01.acme-infinity-servers.com |
-
 | p-ftp-01 | 172.16.10.11 | *Unassigned* | p-ftp-01.acme-infinity-servers.com |
-
 | p-web-02 | 172.16.10.12 | 10.1.0.11 | p-web-02.acme-infinity-servers.com |
-
 | p-jumpbox-01 | 172.16.10.13 | 10.1.0.12 | p-jumpbox-01.acme-infinity-servers.com |
-
 | c-backup-01 | *Unassigned* | 10.1.0.13 | c-backup-01.acme-infinity-servers.com |
-
 | c-redis-01 | *Unassigned* | 10.1.0.14 | c-redis-01.acme-infinity-servers.com |
-
 | c-db-01 | *Unassigned* | 10.1.0.15 | c-db-01.acme-infinity-servers.com |
-
 | c-db-02 | *Unassigned* | 10.1.0.16 | c-db-02.acme-infinity-servers.com |
 
 ---
