@@ -68,6 +68,8 @@ An interactive infiltration of the vulnerable public web server was performed us
 
 ### 6. Lab Architecture Table
 
+![Network Diagram](https://raw.githubusercontent.com/dolevf/Black-Hat-Bash/master/lab/lab-network-diagram.png)
+
 | Container Name | Public IP | Corporate IP | Hostname FQDN |
 | :--- | :--- | :--- | :--- |
 **Ubuntu Host** | 172.16.10.1 | 10.1.0.1 | *Local Host* |
