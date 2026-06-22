@@ -10,7 +10,7 @@ The offensive container lab was deployed using the official automation of the AC
 * **Deployment Command:** sudo make deploy
 
 ![Deployment Evidence Started](./img/deploy_started.png)
-
+![Deployment Evidence Finished](.img/deploy_finished.png)
 ---
 
 ### 2. Status Verification (make test)
