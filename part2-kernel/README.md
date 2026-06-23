@@ -22,10 +22,6 @@ qemu-system-x86_64 -drive file=kernel.iso,media=cdrom -m 512M -no-reboot
 - **Episode 1:** Multiboot2 header, boots and prints OK in QEMU
 - **Episode 2:** Verifies CPUID/long mode, sets up paging, builds 64-bit GDT, jumps to long mode, prints custom message in C
 
-## Group Members
-- Odalis
-- Joselyn
-- Paula
 
 ## Requirements
 - nasm
