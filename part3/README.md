@@ -11,6 +11,14 @@ The offensive container lab was deployed using the official automation of the AC
 
 ![Deployment Evidence Started](./img/deploy_started.png)
 ![Deployment Evidence Finished](./img/deploy_finished.png)
+
+**Real-Time Deployment Monitoring**
+To ensure that the internal build of the machines did not experience interruptions or silent errors, the live installation log file was monitored.
+
+* **Command executed:** tail -f /var/log/lab-install.log
+
+![Log Monitoring Evidence](./img/tail_logs.png)
+
 ---
 
 ### 2. Status Verification (make test)
@@ -81,6 +89,24 @@ An interactive infiltration of the vulnerable public web server was performed us
 | c-redis-01 | *Unassigned* | 10.1.0.14 | c-redis-01.acme-infinity-servers.com |
 | c-db-01 | *Unassigned* | 10.1.0.15 | c-db-01.acme-infinity-servers.com |
 | c-db-02 | *Unassigned* | 10.1.0.16 | c-db-02.acme-infinity-servers.com |
+
+### 7. Analytical Evidence of the Infrastructure (Table Validation)
+To support the data presented in the architecture table, automated inspection scripts were run on the Docker engine. This allowed for a bulk comparison of the IP interfaces and internal FQDN resolution of the 8 entities in the lab.
+
+**1. Bulk IP Address Check (Public and Corporate)**
+* **Command executed:** sudo docker ps -q | xargs sudo docker inspect --format '{{.Name}} -> Public: {{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}'
+* **What does the command do?:** It obtains the identifiers of all running containers and passes them to the `inspect` command. Then, it uses a format template to extract and list only the name of each container along with all the actual IP addresses assigned to it on its respective networks.
+* **Result:** Visually confirms network isolation. Empirically demonstrates that the `c-` (corporate) machines operate under the `10.1.0.X` segment, the `p-` (public) machines under the `172.16.10.X` segment, and validates that the `p-web-02` and `p-jumpbox-01` machines act as network "bridges" by possessing two simultaneous IP addresses.
+
+**2. Bulk Check of Hostnames (FQDNs)**
+* **Command executed:** for c in $(sudo docker ps --format "{{.Names}}"); do echo -n "$c -> FQDN: "; sudo docker exec $c hostname -f; done
+* **What does the command do?:** Uses a Bash loop to iterate through the list of hostnames of active containers. For each server, it automatically logs in internally (`docker exec`) and executes the `hostname -f` command to query the operating system for its official fully qualified domain name (FQDN).
+
+* **Result:** Verifies that the lab provisioning was successful, confirming that each machine correctly resolves its domain ending in `.acme-infinity-servers.com`, perfectly matching the documented architecture table.
+
+![Massive Evidence of Network and FQDN Domains](./img/architecture_table_verification.png)
+
+---
 
 ---
 
