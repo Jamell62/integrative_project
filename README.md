@@ -15,6 +15,40 @@ Build, Boot and Attack — a full Linux stack project covering custom distro, 64
 
 ## How to reproduce
 
+##Part 1 - Custom Distro
+```bash
+#Download the .iso file named interstellar_fijo.iso
+interstellar_fijo.iso
+
+#Open VirtualBox
+
+#Create a new virtual machine
+Name: RolliePollieNew #In this case. But you can customize the name to your liking
+OS Type: Oracle Linux (64-bit) #must be manually chosen upon uploading the .iso file
+
+#System settings
+Base Memory: 9478 MB #so it runs smooth, but it can be set to 1024 MB (1 GB) (will be sluggish)
+Processors: 9 #for smoothnss, but you can work with 1 processor
+Disk Size: 60 GB # for smoothness, can be ran in 15 GB
+Boot Order: Floppy, Optical, Hard Disk
+Acceleration: Nested Paging, KVM Paravirtualization
+
+#Display settings
+Video Memory: 7 MB
+Graphics Controller: VBoxVGA
+Remote Desktop Server: Disabled
+Recording: Disabled
+
+#Storage settings
+Controller: IDE
+IDE Primary Device 0: RolliePollieNew.vdi (Normal, 149.97 GB)
+IDE Secondary Device 0: [Optical Drive] interstellar_fijo.iso (2.94 GB)
+
+#Network settings
+Adapter 1: PCnet-FAST III (NAT)
+
+#When you are finished configuring the VM, install the interstellar_fijo.iso wqhen you are inside the VM, it wil only take a couple of minutes
+```
 ### Part 2 - Kernel
 ```bash
 cd part2-kernel
