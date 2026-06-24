@@ -52,17 +52,18 @@ qemu-system-x86_64 -drive file=kernel.iso,media=cdrom -m 512M -no-reboot # Launc
 
 ## Requirements
 
-# NASM assembler used to build assembly source files
-- nasm 
+- nasm # NASM assembler used to build assembly source files
 
-# GCC compiler used to compile the kernel source code
-- gcc 
+- gcc # GCC compiler used to compile the kernel source code
 
-# GNU Binutils linker required to generate the kernel binary
-- binutils (ld) 
+- binutils (ld) # GNU Binutils linker required to generate the kernel binary
 
-# GRUB and ISO creation tools used to build bootable media
-- grub-pc-bin, grub-common, xorriso 
+- grub-pc-bin, grub-common, xorriso # GRUB and ISO creation tools used to build bootable media
 
-# QEMU emulator used to test and execute the kernel
-- qemu-system-x86 
+- qemu-system-x86 # QEMU emulator used to test and execute the kernel
+
+´´´
+## Evidence
+<img width="758" height="482" alt="WhatsApp Image 2026-06-19 at 10 12 40 PM" src="https://github.com/user-attachments/assets/21efc753-80ac-46f6-a944-2fe9c514defd" />
+
+<img width="725" height="485" alt="WhatsApp Image 2026-06-19 at 10 12 40 PM (1)" src="https://github.com/user-attachments/assets/5d31b95e-b62e-4ce5-a7ce-37f9fbe4ebd9" />
