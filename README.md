@@ -15,52 +15,64 @@ Build, Boot and Attack — a full Linux stack project covering custom distro, 64
 
 ## How to reproduce
 
-##Part 1 - Custom Distro
+## Part 1 - Custom Distro
 ```bash
 #Download the .iso file named interstellar_fijo.iso
 interstellar_fijo.iso
+#This is the installation image you'll mount into the VM later
 
 #Open VirtualBox
+#Launches the VirtualBox application where you'll build the VM
 
 #Create a new virtual machine
-Name: RolliePollieNew #In this case. But you can customize the name to your liking
-OS Type: Oracle Linux (64-bit) #must be manually chosen upon uploading the .iso file
+Name: RolliePollieNew #The display name VirtualBox will use to identify this VM. In this case. But you can customize the name to your liking
+OS Type: Oracle Linux (64-bit) #Tells VirtualBox which OS profile to optimize settings for; must be manually chosen upon uploading the .iso file
 
 #System settings
-Base Memory: 9478 MB #so it runs smooth, but it can be set to 1024 MB (1 GB) (will be sluggish)
-Processors: 9 #for smoothnss, but you can work with 1 processor
-Disk Size: 60 GB # for smoothness, can be ran in 15 GB
-Boot Order: Floppy, Optical, Hard Disk
-Acceleration: Nested Paging, KVM Paravirtualization
+Base Memory: 9478 MB #Amount of host RAM allocated to the VM, so it runs smooth, but it can be set to 1024 MB (1 GB) (will be sluggish)
+Processors: 9 #Number of virtual CPU cores assigned to the VM, for smoothness, but you can work with 1 processor
+Disk Size: 60 GB #Total virtual hard disk capacity available to the guest OS, for smoothness, can be ran in 15 GB
+Boot Order: Floppy, Optical, Hard Disk #Defines the sequence VirtualBox checks devices in to find a bootable OS
+Acceleration: Nested Paging, KVM Paravirtualization #Hardware/virtualization features that let the VM run closer to native speed
 
 #Display settings
-Video Memory: 7 MB
-Graphics Controller: VBoxVGA
-Remote Desktop Server: Disabled
-Recording: Disabled
+Video Memory: 7 MB #Amount of memory reserved for rendering the VM's graphical output
+Graphics Controller: VBoxVGA #The virtual graphics adapter emulated for the guest OS
+Remote Desktop Server: Disabled #Turns off the ability to connect to this VM remotely via RDP
+Recording: Disabled #Turns off VirtualBox's built-in screen/video capture of the VM session
 
 #Storage settings
-Controller: IDE
-IDE Primary Device 0: RolliePollieNew.vdi (Normal, 149.97 GB)
-IDE Secondary Device 0: [Optical Drive] interstellar_fijo.iso (2.94 GB)
+Controller: IDE #The virtual disk interface type used to connect storage devices to the VM
+IDE Primary Device 0: RolliePollieNew.vdi (Normal, 149.97 GB) #The virtual hard disk file that acts as the VM's main storage
+IDE Secondary Device 0: [Optical Drive] interstellar_fijo.iso (2.94 GB) #The virtual CD/DVD drive where the install ISO is mounted
 
 #Network settings
-Adapter 1: PCnet-FAST III (NAT)
+Adapter 1: PCnet-FAST III (NAT) #Virtual network card set to NAT mode, letting the VM access the internet through the host
 
-#When you are finished configuring the VM, install the interstellar_fijo.iso wqhen you are inside the VM, it wil only take a couple of minutes
+#When you are finished configuring the VM, install the interstellar_fijo.iso when you are inside the VM, it will only take a couple of minutes
+#This boots the VM from the mounted ISO and runs the Linux Mint installer
 ```
 ### Part 2 - Kernel
 ```bash
-cd part2-kernel
-nasm -f elf64 src/targets/x86_64/boot.asm -o /tmp/boot.o
-nasm -f elf64 src/targets/x86_64/long_mode_start.asm -o /tmp/long_mode.o
-gcc -m64 -ffreestanding -fno-stack-protector -mno-red-zone -c src/targets/x86_64/kernel.c -o /tmp/kernel.o
-ld -m elf_x86_64 -T src/targets/x86_64/linker.ld -o iso/boot/kernel.bin /tmp/boot.o /tmp/long_mode.o /tmp/kernel.o
-grub-mkrescue -o kernel.iso iso
-qemu-system-x86_64 -drive file=kernel.iso,media=cdrom -m 512M -no-reboot
-```
+### Part 2 - Kernel
 
+```bash
+cd part2-kernel # Navigate to the kernel project directory
+
+nasm -f elf64 src/targets/x86_64/boot.asm -o /tmp/boot.o # Assemble the bootloader source file into a 64-bit object file
+
+nasm -f elf64 src/targets/x86_64/long_mode_start.asm -o /tmp/long_mode.o # Assemble the long mode initialization code for 64-bit execution
+
+gcc -m64 -ffreestanding -fno-stack-protector -mno-red-zone -c src/targets/x86_64/kernel.c -o /tmp/kernel.o # Compile the main kernel source code written in C
+
+ld -m elf_x86_64 -T src/targets/x86_64/linker.ld -o iso/boot/kernel.bin /tmp/boot.o /tmp/long_mode.o /tmp/kernel.o # Link all object files into the final kernel binary using the linker script
+
+grub-mkrescue -o kernel.iso iso # Create a bootable ISO image containing the kernel and GRUB configuration
+
+qemu-system-x86_64 -drive file=kernel.iso,media=cdrom -m 512M -no-reboot # Run the kernel ISO in QEMU for testing and validation
+```
 ### Part 3 - Black Hat Bash Lab
+```bash
 To reproduce the offensive lab infrastructure and execute the automated scanning, run the following commands:
 
 ```bash
