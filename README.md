@@ -57,19 +57,19 @@ Adapter 1: PCnet-FAST III (NAT) #Virtual network card set to NAT mode, letting t
 ### Part 2 - Kernel
 
 ```bash
-cd part2-kernel         # Navigate to the kernel project directory
+cd part2-kernel # Navigate to the kernel project directory
 
-nasm -f elf64 src/targets/x86_64/boot.asm -o /tmp/boot.o         # Assemble the bootloader source file into a 64-bit object file
+nasm -f elf64 src/targets/x86_64/boot.asm -o /tmp/boot.o # Assemble the bootloader source file into a 64-bit object file
 
-nasm -f elf64 src/targets/x86_64/long_mode_start.asm -o /tmp/long_mode.o         # Assemble the long mode initialization code for 64-bit execution
+nasm -f elf64 src/targets/x86_64/long_mode_start.asm -o /tmp/long_mode.o # Assemble the long mode initialization code for 64-bit execution
 
-gcc -m64 -ffreestanding -fno-stack-protector -mno-red-zone -c src/targets/x86_64/kernel.c -o /tmp/kernel.o         # Compile the main kernel source code written in C
+gcc -m64 -ffreestanding -fno-stack-protector -mno-red-zone -c src/targets/x86_64/kernel.c -o /tmp/kernel.o # Compile the main kernel source code written in C
 
-ld -m elf_x86_64 -T src/targets/x86_64/linker.ld -o iso/boot/kernel.bin /tmp/boot.o /tmp/long_mode.o /tmp/kernel.o         # Link all object files into the final kernel binary using the linker script
+ld -m elf_x86_64 -T src/targets/x86_64/linker.ld -o iso/boot/kernel.bin /tmp/boot.o /tmp/long_mode.o /tmp/kernel.o # Link all object files into the final kernel binary using the linker script
 
-grub-mkrescue -o kernel.iso iso         # Create a bootable ISO image containing the kernel and GRUB configuration
+grub-mkrescue -o kernel.iso iso # Create a bootable ISO image containing the kernel and GRUB configuration
 
-qemu-system-x86_64 -drive file=kernel.iso,media=cdrom -m 512M -no-reboot         # Run the kernel ISO in QEMU for testing and validation
+qemu-system-x86_64 -drive file=kernel.iso,media=cdrom -m 512M -no-reboot # Run the kernel ISO in QEMU for testing and validation
 ```
 ### Part 3 - Black Hat Bash Lab
 ```
