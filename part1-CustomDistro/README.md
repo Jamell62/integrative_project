@@ -31,30 +31,31 @@ Modifying `/etc/skel` ensures that every new user account created on the system 
 
 ## Boot Screenshots
 
-Installation of vitual environment (Linux Mint) and Cubic installation on VM
-![alt text](1782266720725.jpg)
-![alt text](1782266720687.jpg)
-![alt text](1782266720613.jpg)
-Screenshots relevant to the installation of LM.
-![alt text](1782266720570.jpg)
-![alt text](1782266720486.jpg)
-![alt text](1782266720444.jpg)
-![alt text](1782266720486.jpg)
-![alt text](1782266720570.jpg)
-Screenshots relevant to the complete process of installing Cubic.
+## Installation of Virtual Environment (Linux Mint) and Cubic installation on VM
 
-Opening of Cubic and creation of the distro with customizations
-![alt text](cubic_pantalla.jpg)
-![alt text](configs_distro.jpg)
-![alt text](1782266719910.jpg)
-![alt text](1782266719867.jpg)
-![alt text](1782266719648.jpg)
-![alt text](1782266719745.jpg)
-![alt text](1782266719794.jpg)
+![Linux Mint VM setup](./img/1782266720725.jpg)
+![Linux Mint VM setup 2](./img/1782266720687.jpg)
+![Linux Mint VM setup 3](./img/1782266720613.jpg)
 
-Final distro configurations
-![alt text](1782266719458.jpg)
+## Screenshots relevant to the installation of LM
 
+![LM installation step 1](./img/1782266720570.jpg)
+![LM installation step 2](./img/1782266720486.jpg)
+![LM installation step 3](./img/1782266720444.jpg)
+
+## Screenshots relevant to the complete process of installing Cubic
+
+![Cubic opening screen](./img/cubic_pantalla.jpg)
+![Distro configurations](./img/configs_distro.jpg)
+![Cubic process step 1](./img/1782266719910.jpg)
+![Cubic process step 2](./img/1782266719867.jpg)
+![Cubic process step 3](./img/1782266719648.jpg)
+![Cubic process step 4](./img/1782266719745.jpg)
+![Cubic process step 5](./img/1782266719794.jpg)
+
+## Final distro configurations
+
+![Final distro config](./img/1782266719458.jpg)
 
 
 **SHA256 checksum:** `interstellar_fijo.sha256`
