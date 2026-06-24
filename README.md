@@ -72,7 +72,7 @@ grub-mkrescue -o kernel.iso iso # Create a bootable ISO image containing the ker
 qemu-system-x86_64 -drive file=kernel.iso,media=cdrom -m 512M -no-reboot # Run the kernel ISO in QEMU for testing and validation
 ```
 ### Part 3 - Black Hat Bash Lab
-```
+```bash
 To reproduce the offensive lab infrastructure and execute the automated scanning, run the following commands:
 
 ```bash
