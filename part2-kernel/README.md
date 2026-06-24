@@ -1,5 +1,6 @@
 # Part 2 - 64-bit Kernel
 
+
 ## Description
 A minimal 64-bit operating system kernel built from scratch using NASM, GCC, and GRUB.
 
