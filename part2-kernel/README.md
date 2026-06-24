@@ -62,8 +62,9 @@ qemu-system-x86_64 -drive file=kernel.iso,media=cdrom -m 512M -no-reboot # Launc
 
 - qemu-system-x86 # QEMU emulator used to test and execute the kernel
 
-´´´
 ## Evidence
+#The image shows the successful boot of the 64-bit MiniKernel in QEMU, confirming that the kernel loaded correctly and is ready to run.
 <img width="758" height="482" alt="WhatsApp Image 2026-06-19 at 10 12 40 PM" src="https://github.com/user-attachments/assets/21efc753-80ac-46f6-a944-2fe9c514defd" />
 
+#The image shows that the 64-bit MiniKernel is running, confirming that Long Mode is activated and the system is working correctly in QEMU.
 <img width="725" height="485" alt="WhatsApp Image 2026-06-19 at 10 12 40 PM (1)" src="https://github.com/user-attachments/assets/5d31b95e-b62e-4ce5-a7ce-37f9fbe4ebd9" />
