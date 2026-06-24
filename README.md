@@ -13,7 +13,7 @@ Build, Boot and Attack — a full Linux stack project covering custom distro, 64
 - `part2-kernel/` - 64-bit kernel built from scratch
 - `part3-lab/` - Black Hat Bash offensive security lab
 
-## Link to reporduce video
+## Link to reproduce video
 https://youtu.be/P-pr14Q4dl0
 
 ## How to reproduce
