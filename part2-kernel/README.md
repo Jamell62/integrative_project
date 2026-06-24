@@ -25,15 +25,20 @@ part2-kernel/
             └── kernel.c        # Main C kernel code managing the VGA screen buffer.
 
 ## Build Instructions
-# Compile and generate ISO
-nasm -f elf64 src/targets/x86_64/boot.asm -o /tmp/boot.o
-nasm -f elf64 src/targets/x86_64/long_mode_start.asm -o /tmp/long_mode.o
-gcc -m64 -ffreestanding -fno-stack-protector -mno-red-zone -c src/targets/x86_64/kernel.c -o /tmp/kernel.o
-ld -m elf_x86_64 -T src/targets/x86_64/linker.ld -o iso/boot/kernel.bin /tmp/boot.o /tmp/long_mode.o /tmp/kernel.o
-grub-mkrescue -o kernel.iso iso
 
-# Run in QEMU
-qemu-system-x86_64 -drive file=kernel.iso,media=cdrom -m 512M -no-reboot
+# Compile and generate ISO
+
+nasm -f elf64 src/targets/x86_64/boot.asm -o /tmp/boot.o # Assemble the bootloader initialization code into a 64-bit object file 
+
+nasm -f elf64 src/targets/x86_64/long_mode_start.asm -o /tmp/long_mode.o # Assemble the code responsible for switching the CPU into 64-bit long mode 
+
+gcc -m64 -ffreestanding -fno-stack-protector -mno-red-zone -c src/targets/x86_64/kernel.c -o /tmp/kernel.o # Compile the main kernel source code written in C 
+
+ld -m elf_x86_64 -T src/targets/x86_64/linker.ld -o iso/boot/kernel.bin /tmp/boot.o /tmp/long_mode.o /tmp/kernel.o # Link all object files into a single kernel binary using the linker script 
+
+grub-mkrescue -o kernel.iso iso # Generate a bootable ISO image containing the kernel and GRUB bootloader 
+
+qemu-system-x86_64 -drive file=kernel.iso,media=cdrom -m 512M -no-reboot # Launch the generated ISO in the QEMU virtual machine emulator 
 
 ```
 
@@ -41,12 +46,23 @@ qemu-system-x86_64 -drive file=kernel.iso,media=cdrom -m 512M -no-reboot
 
 ## What it does
 - **Episode 1:** Multiboot2 header, boots and prints OK in QEMU
+
 - **Episode 2:** Verifies CPUID/long mode, sets up paging, builds 64-bit GDT, jumps to long mode, prints custom message in C
 
 
 ## Requirements
-- nasm
-- gcc
-- binutils (ld)
-- grub-pc-bin, grub-common, xorriso
-- qemu-system-x86
+
+# NASM assembler used to build assembly source files
+- nasm 
+
+# GCC compiler used to compile the kernel source code
+- gcc 
+
+# GNU Binutils linker required to generate the kernel binary
+- binutils (ld) 
+
+# GRUB and ISO creation tools used to build bootable media
+- grub-pc-bin, grub-common, xorriso 
+
+# QEMU emulator used to test and execute the kernel
+- qemu-system-x86 
